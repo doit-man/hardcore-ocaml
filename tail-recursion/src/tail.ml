@@ -5,7 +5,7 @@ let rec length_unopt l = match l with [] -> 0 | _ :: t -> 1 + length_unopt t
 let rec length_opt len l = 
   match l with
   [] -> len
-  | _:: t -> length_opt (len + 1) t
+  | _ :: t -> length_opt (len + 1) t
 
 let main () =
   Arg.parse options (fun x -> input := x) "";
