@@ -5,7 +5,7 @@ let options = [ ("-opt", Arg.Set opt, "Optimized version") ]
 let square_unopt lst =
   List.fold_left (fun result n -> result @ [ n * n ]) [] lst
 
-let square_opt lst = List.fold_left (fun result n -> (n * n) :: result ) [] lst
+let square_opt lst = List.fold_left (fun result n -> (n * n) :: result ) [] lst |> List.rev
 let check lst1 lst2 = List.for_all2 (fun x y -> x * x = y) lst1 lst2
 
 let main () =
