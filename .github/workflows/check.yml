@@ -29,16 +29,16 @@ jobs:
         run: |
           RES=`./check`
           echo $RES
-          COMPARE_ELAPSED= `$RES | sed -n -e  '1p' | cut -d " " -f2`
-          EMPTY_ELAPSED= `$RES | sed -n -e  '2p' | cut -d " " -f2`
-          EQUALITY_ELAPSED= `$RES | sed -n -e  '3p' | cut -d " " -f2`
-          FILE-IO_ELAPSED= `$RES | sed -n -e  '4p' | cut -d " " -f2`
-          LIST_ELAPSED= `$RES | sed -n -e  '5p' | cut -d " " -f2`
-          REGEXP_ELAPSED= `$RES | sed -n -e  '6p' | cut -d " " -f2`
-          SERIALIZE_GEN_ELAPSED= `$RES | sed -n -e  '7p' | cut -d " " -f2`
-          SERIALIZE_READ_ELAPSED= `$RES | sed -n -e  '8p' | cut -d " " -f2`
-          STRING_ELAPSED= `$RES | sed -n -e  '9p' | cut -d " " -f2`
-          TAIL-RECURSION_ELAPSED= `$RES | sed -n -e  '10p' | cut -d " " -f2`
+          COMPARE_ELAPSED=`$RES | sed -n -e  '1p' | cut -d " " -f2`
+          EMPTY_ELAPSED=`$RES | sed -n -e  '2p' | cut -d " " -f2`
+          EQUALITY_ELAPSED=`$RES | sed -n -e  '3p' | cut -d " " -f2`
+          FILE-IO_ELAPSED=`$RES | sed -n -e  '4p' | cut -d " " -f2`
+          LIST_ELAPSED=`$RES | sed -n -e  '5p' | cut -d " " -f2`
+          REGEXP_ELAPSED=`$RES | sed -n -e  '6p' | cut -d " " -f2`
+          SERIALIZE_GEN_ELAPSED=`$RES | sed -n -e  '7p' | cut -d " " -f2`
+          SERIALIZE_READ_ELAPSED=`$RES | sed -n -e  '8p' | cut -d " " -f2`
+          STRING_ELAPSED=`$RES | sed -n -e  '9p' | cut -d " " -f2`
+          TAIL-RECURSION_ELAPSED=`$RES | sed -n -e  '10p' | cut -d " " -f2`
 
           curl \
             -X POST \
