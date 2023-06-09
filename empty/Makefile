@@ -2,7 +2,7 @@ MAKE=@make
 DUNE=@dune
 LN=@ln -sf
 RM=@rm
-BIN=list
+BIN=empty
 
 all:
 	$(DUNE) build src/$(BIN).exe

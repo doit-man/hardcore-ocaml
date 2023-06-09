@@ -2,7 +2,7 @@ MAKE=@make
 DUNE=@dune
 LN=@ln -sf
 RM=@rm
-BIN=list
+BIN=profiling
 
 all:
 	$(DUNE) build src/$(BIN).exe
