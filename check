@@ -3,100 +3,100 @@ start_time=`date +%s.%N`
 ./compare/compare -opt 10000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'compare elapsed:' "${elapsed_time}s"
+echo 'compare elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./empty/empty -opt 10000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'empty elapsed:' "${elapsed_time}s"
+echo 'empty elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./equality/equality -opt 1000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'equality elapsed:' "${elapsed_time}s"
+echo 'equality elapsed:' $elapsed_time
 
 ./file-io/gen 100000000
 start_time=`date +%s.%N`
 ./file-io/read -opt large.txt &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'file-io elapsed:' "${elapsed_time}s"
+echo 'file-io elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./list/list -opt 10000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'list elapsed:' "${elapsed_time}s"
+echo 'list elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./regexp/regexp -opt 1000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'regexp elapsed:' "${elapsed_time}s"+'s'
+echo 'regexp elapsed:' $elapsed_time+'s'
 
 ./serialize/gen 1000000 &> /dev/null
 start_time=`date +%s.%N`
 ./serialize/gen -opt 1000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'serialize_gen elapsed:' "${elapsed_time}s"
+echo 'serialize_gen elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./serialize/read -opt large.out &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'serialize_read elapsed:' "${elapsed_time}s"
+echo 'serialize_read elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./string/string -opt 1000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'string elapsed:' "${elapsed_time}s"
+echo 'string elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./tail-recursion/tail -opt 10000000 &> /dev/null
 res=$?
 end_time=`date +%s.%N`
-elapsed_time=`echo "$end_time - $start_time" | bc `
+elapsed_time=$(echo "$end_time - $start_time" | bc)s
 if [ $res -ne 0 ]; then
   elapsed_time="None"
 fi
-echo 'tail-recursion elapsed:' "${elapsed_time}s"
+echo 'tail-recursion elapsed:' $elapsed_time
