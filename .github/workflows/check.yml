@@ -41,18 +41,18 @@ jobs:
 
       - name: Report elapsed time
         run: |
-          RES=`./check`
+          RES="$(./check)"
           echo $RES
-          COMPARE_ELAPSED=`$RES | sed -n -e  '1p' | cut -d " " -f2`
-          EMPTY_ELAPSED=`$RES | sed -n -e  '2p' | cut -d " " -f2`
-          EQUALITY_ELAPSED=`$RES | sed -n -e  '3p' | cut -d " " -f2`
-          FILE-IO_ELAPSED=`$RES | sed -n -e  '4p' | cut -d " " -f2`
-          LIST_ELAPSED=`$RES | sed -n -e  '5p' | cut -d " " -f2`
-          REGEXP_ELAPSED=`$RES | sed -n -e  '6p' | cut -d " " -f2`
-          SERIALIZE_GEN_ELAPSED=`$RES | sed -n -e  '7p' | cut -d " " -f2`
-          SERIALIZE_READ_ELAPSED=`$RES | sed -n -e  '8p' | cut -d " " -f2`
-          STRING_ELAPSED=`$RES | sed -n -e  '9p' | cut -d " " -f2`
-          TAIL-RECURSION_ELAPSED=`$RES | sed -n -e  '10p' | cut -d " " -f2`
+          COMPARE_ELAPSED=`echo $RES | cut -d " " -f2`
+          EMPTY_ELAPSED=`echo $RES | cut -d " " -f4`
+          EQUALITY_ELAPSED=`echo $RES | cut -d " " -f6`
+          FILE_IO_ELAPSED=`echo $RES | cut -d " " -f8`
+          LIST_ELAPSED=`echo $RES | cut -d " " -f10`
+          REGEXP_ELAPSED=`echo $RES | cut -d " " -f12`
+          SERIALIZE_GEN_ELAPSED=`echo $RES | cut -d " " -f14`
+          SERIALIZE_READ_ELAPSED=`echo $RES | cut -d " " -f16`
+          STRING_ELAPSED=`echo $RES | cut -d " " -f18`
+          TAIL_RECURSION_ELAPSED=`echo $RES | cut -d " " -f20`
 
           curl \
             -X POST \
@@ -61,3 +61,78 @@ jobs:
             -H "X-GitHub-Api-Version: 2022-11-28" \
             https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
             -d '{"state":"success","target_url":"","description":"'"${COMPARE_ELAPSED}"'","context":"check/compare"}'
+          
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${EMPTY_ELAPSED}"'","context":"check/empty"}'
+            
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${EQUALITY_ELAPSED}"'","context":"check/equality"}'
+            
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${FILE_IO_ELAPSED}"'","context":"check/file_io"}'
+            
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${LIST_ELAPSED}"'","context":"check/list"}'
+            
+            curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${REGEXP_ELAPSED}"'","context":"check/regexp"}'
+            
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${SERIALIZE_GEN_ELAPSED}"'","context":"check/serialize_gen"}'
+            
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${SERIALIZE_READ_ELAPSED}"'","context":"check/serialize_read"}'
+            
+  
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${STRING_ELAPSED}"'","context":"check/string"}'
+
+          curl \
+            -X POST \
+            -H "Accept: application/vnd.github+json" \
+            -H "Authorization: Bearer ${{ secrets.GITHUB_TOKEN }}"\
+            -H "X-GitHub-Api-Version: 2022-11-28" \
+            https://api.github.com/repos/${{ github.repository }}/statuses/${{ github.sha }} \
+            -d '{"state":"success","target_url":"","description":"'"${TAIL_RECURSION_ELAPSED}"'","context":"check/tail_recursion"}'
+
+
