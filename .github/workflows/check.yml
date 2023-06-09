@@ -43,16 +43,16 @@ jobs:
         run: |
           RES="$(./check)"
           echo $RES
-          COMPARE_ELAPSED=`echo $RES | cut -d " " -f2`
-          EMPTY_ELAPSED=`echo $RES | cut -d " " -f4`
-          EQUALITY_ELAPSED=`echo $RES | cut -d " " -f6`
-          FILE_IO_ELAPSED=`echo $RES | cut -d " " -f8`
-          LIST_ELAPSED=`echo $RES | cut -d " " -f10`
-          REGEXP_ELAPSED=`echo $RES | cut -d " " -f12`
-          SERIALIZE_GEN_ELAPSED=`echo $RES | cut -d " " -f14`
-          SERIALIZE_READ_ELAPSED=`echo $RES | cut -d " " -f16`
-          STRING_ELAPSED=`echo $RES | cut -d " " -f18`
-          TAIL_RECURSION_ELAPSED=`echo $RES | cut -d " " -f20`
+          COMPARE_ELAPSED=`echo $RES | cut -d " " -f2 ,3`
+          EMPTY_ELAPSED=`echo $RES | cut -d " " -f5,6`
+          EQUALITY_ELAPSED=`echo $RES | cut -d " " -f8,9`
+          FILE_IO_ELAPSED=`echo $RES | cut -d " " -f11,12`
+          LIST_ELAPSED=`echo $RES | cut -d " " -f14,15`
+          REGEXP_ELAPSED=`echo $RES | cut -d " " -f17,18`
+          SERIALIZE_GEN_ELAPSED=`echo $RES | cut -d " " -f20,21`
+          SERIALIZE_READ_ELAPSED=`echo $RES | cut -d " " -f23,24`
+          STRING_ELAPSED=`echo $RES | cut -d " " -f26,27`
+          TAIL_RECURSION_ELAPSED=`echo $RES | cut -d " " -f29,30`
 
           curl \
             -X POST \
