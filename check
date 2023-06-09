@@ -1,57 +1,61 @@
 #!/bin/bash
 start_time=`date +%s.%N`
 ./compare/compare -opt 10000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -eq 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
-  echo "fuckfuck"
 fi
 echo 'compare_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./empty/empty -opt 10000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -eq 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
-  echo "fuck"
 fi
 echo 'empty_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./equality/equality -opt 1000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'equality_elapsed:' $elapsed_time
 
 ./file-io/gen 100000000
 start_time=`date +%s.%N`
-./file-io/read -opt ./file-io/large.txt &> /dev/null
+./file-io/read -opt large.txt &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'file-io_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./list/list -opt 10000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'list_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./regexp/regexp -opt 1000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'regexp_elapsed:' $elapsed_time
@@ -59,36 +63,40 @@ echo 'regexp_elapsed:' $elapsed_time
 ./serialize/gen 1000000 &> /dev/null
 start_time=`date +%s.%N`
 ./serialize/gen -opt 1000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'serialize_gen_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
-./serialize/read -opt ./serialize/large.out &> /dev/null
+./serialize/read -opt large.out &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'serialize_read_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./string/string -opt 1000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'string_elapsed:' $elapsed_time
 
 start_time=`date +%s.%N`
 ./tail-recursion/tail -opt 10000000 &> /dev/null
+res=$?
 end_time=`date +%s.%N`
 elapsed_time=`echo "$end_time - $start_time" | bc `
-if [ $? -ne 0 ]; then
+if [ $res -ne 0 ]; then
   elapsed_time="Not Implemented"
 fi
 echo 'tail-recursion_elapsed:' $elapsed_time
